@@ -162,7 +162,7 @@ using LoginDemo.Models;
             WriteLiteral("        ");
             EndContext();
             BeginContext(1379, 33, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "0e86ee16be8c4524af0d7003bedd1fbd", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "706040108cdb42cfb5867724b62e0806", async() => {
                 BeginContext(1401, 7, true);
                 WriteLiteral("Details");
                 EndContext();
@@ -192,7 +192,7 @@ using LoginDemo.Models;
             WriteLiteral("</div>\r\n\r\n<div>\r\n    ");
             EndContext();
             BeginContext(1442, 29, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "d66ee4b8037f4ae48b1d0fcd55ba7e2a", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "5a04ae74350943ccbb9ed4ef92bde4fd", async() => {
                 BeginContext(1463, 4, true);
                 WriteLiteral("Edit");
                 EndContext();
@@ -214,7 +214,7 @@ using LoginDemo.Models;
             WriteLiteral(" &nbsp;\r\n    ");
             EndContext();
             BeginContext(1484, 33, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "aa59c33cd2694541973ae91be13c0fc7", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "46ebcc2260e04350864a6f87385fdb06", async() => {
                 BeginContext(1507, 6, true);
                 WriteLiteral("Delete");
                 EndContext();
@@ -236,7 +236,7 @@ using LoginDemo.Models;
             WriteLiteral("\r\n    ");
             EndContext();
             BeginContext(1523, 33, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "3218dab3163644ee948f0ab8de5d5148", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "4500a4576b944fc0a0b7d46e7cae8f11", async() => {
                 BeginContext(1546, 6, true);
                 WriteLiteral("LogOff");
                 EndContext();

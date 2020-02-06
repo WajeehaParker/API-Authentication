@@ -63,7 +63,7 @@ using LoginDemo.Models;
             WriteLiteral("\r\n<h2>Login</h2>\r\n\r\n<div style=\"padding-top:50px;\"></div>\r\n<div style=\"padding:50px;\">\r\n        <div class=\"row\">\r\n            <div class=\"col-lg-4 col-md-4 col-sm-4\">\r\n                ");
             EndContext();
             BeginContext(256, 915, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "ed9a681d67684f5b8dbdcd1e6741ae0e", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "1a3e761076a04b58aeb070b0f71e703a", async() => {
                 BeginContext(281, 53, true);
                 WriteLiteral("\r\n                    <div>\r\n                        ");
                 EndContext();
@@ -113,7 +113,7 @@ using LoginDemo.Models;
                         ");
                 EndContext();
                 BeginContext(1088, 30, false);
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "9c1668b39c464732baffc6395edf15e1", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "0bbeb42690ab4c0c93838eff47af2a5d", async() => {
                     BeginContext(1110, 4, true);
                     WriteLiteral("Back");
                     EndContext();

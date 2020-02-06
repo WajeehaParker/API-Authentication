@@ -11,11 +11,58 @@ using System.IO;
 
 namespace employeesAPI.Controllers
 {
-    [Route("")]
+    [Route("api/[controller]")]
     [ApiController]
     public class EmployeesController : ControllerBase
     {
         EmployeeDB employeeDB = new EmployeeDB();
+
+        // GET api/values
+        [HttpGet]
+        public ActionResult<IEnumerable<Employee>> Get(string token)
+        {
+            if(RSAClass.Decrypt(token) =="token")
+                return employeeDB.getAllEmployee().ToList();
+            return BadRequest();
+        }
+
+        // GET api/values/5
+        [HttpGet("{id}")]
+        public ActionResult<Employee> Get(int id, string token)
+        {
+            if (RSAClass.Decrypt(token) == "token")
+                return employeeDB.getEmployeeByID(id);
+            return BadRequest();
+        }
+
+        // POST api/values
+        [HttpPost]
+        public ActionResult Post([FromBody] Employee emp, string token)
+        {
+            if (RSAClass.Decrypt(token) == "token")
+                employeeDB.addEmployee(emp);
+            return BadRequest();
+        }
+
+        // PUT api/values/5
+        [HttpPut]
+        public ActionResult Put([FromBody] Employee emp, string token)
+        {
+            if (RSAClass.Decrypt(token) == "token")
+                employeeDB.updateEmployee(emp);
+            return BadRequest();
+        }
+
+        // DELETE api/values/5
+        [HttpDelete("{id}")]
+        public ActionResult Delete(int id, string token)
+        {
+            if (RSAClass.Decrypt(token) == "token")
+                employeeDB.deleteEmployee(id);
+            return BadRequest();
+        }
+
+        /*EmployeeDB employeeDB = new EmployeeDB();
         [HttpGet("all")]
         public ActionResult<IEnumerable<Employee>> Index([FromQuery] string data)
         {
@@ -68,6 +115,6 @@ namespace employeesAPI.Controllers
                 return NotFound();
             employeeDB.deleteEmployee(id);
             return Accepted();
-        }
+        }*/
     }
 }

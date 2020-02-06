@@ -9,14 +9,14 @@ using System.IO;
 using System.Net.Http;
 using Microsoft.AspNetCore.Authorization;
 using System.Security.Claims;
-using System.Text;
-using System.Security.Cryptography;
 
 namespace LoginDemo.Controllers
 {
     public class HomeController : Controller
-    { 
+    {
+        private string token = RSAClass.Encrypt("token");
         private static readonly HttpClient client = new HttpClient();
+
         public async Task<IActionResult> Index()
         {
             HttpContext.Session.Clear();
@@ -85,8 +85,8 @@ namespace LoginDemo.Controllers
                         return View(emp);
                     }
                 }
-                await client.GetStringAsync("https://localhost:44330/create?name="+emp.Name+"&gender="+emp.Gender+"&department="+emp.Department+"&username="+emp.Username.Trim()+"&password="+emp.Password);
-                //await client.GetStringAsync("https://localhost:44330/create?data="+emp);
+                //await client.GetStringAsync("https://localhost:44330/create?name="+emp.Name+"&gender="+emp.Gender+"&department="+emp.Department+"&username="+emp.Username.Trim()+"&password="+emp.Password);
+                await client.PostAsJsonAsync("https://localhost:44330/api/employees?token=" + token, emp);
                 return RedirectToAction("Index");
             }
             return View(emp);
@@ -105,7 +105,8 @@ namespace LoginDemo.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteEmp()
         {
-            await client.GetStringAsync("https://localhost:44330/delete?data="+RSAClass.Encrypt(HttpContext.User.Identity.Name));
+            //await client.GetStringAsync("https://localhost:44330/delete?data="+RSAClass.Encrypt(HttpContext.User.Identity.Name));
+            await client.DeleteAsync($"https://localhost:44330/api/employees/{Int16.Parse(HttpContext.User.Identity.Name)}?token=" + token);
             return RedirectToAction("Index");
         }
 
@@ -134,29 +135,26 @@ namespace LoginDemo.Controllers
                         return View(emp);
                     }
                 }
-                await client.GetStringAsync("https://localhost:44330/edit?id="+Int16.Parse(HttpContext.User.Identity.Name)+"&name="+emp.Name+"&gender="+emp.Gender+"&department="+emp.Department+"&username="+emp.Username.Trim()+"&password="+emp.Password);
-                return RedirectToAction("Details/");
+                emp.ID = Int16.Parse(HttpContext.User.Identity.Name);
+                //await client.GetStringAsync("https://localhost:44330/edit?id="+Int16.Parse(HttpContext.User.Identity.Name)+"&name="+emp.Name+"&gender="+emp.Gender+"&department="+emp.Department+"&username="+emp.Username.Trim()+"&password="+emp.Password);
+                await client.PutAsJsonAsync("https://localhost:44330/api/employees?token=" + token, emp);
+                return RedirectToAction("Details");
             }
             return View(emp);
         }
 
         public async Task<User> getUser()
         {
-            /*return new User { ID= Int16.Parse(HttpContext.User.Identity.Name),
-                              Name= HttpContext.User.FindFirst("NAME").Value,
-                              Username= HttpContext.User.FindFirst("USERNAME").Value,
-                              Gender = HttpContext.User.FindFirst("GENDER").Value,
-                              Department = HttpContext.User.FindFirst("PASSWORD").Value,
-                              Password = HttpContext.User.FindFirst("DEPARTMENT").Value
-                            };*/
-            var responseString = await client.GetStringAsync("https://localhost:44330/emp?data="+ RSAClass.Encrypt(HttpContext.User.Identity.Name));
+            //var responseString = await client.GetStringAsync("https://localhost:44330/emp?data="+ RSAClass.Encrypt(HttpContext.User.Identity.Name));
+            var responseString = await client.GetStringAsync($"https://localhost:44330/api/employees/{Int16.Parse(HttpContext.User.Identity.Name)}?token="+token);
             JsonTextReader rs = new JsonTextReader(new StringReader(responseString));
             return new JsonSerializer().Deserialize(rs, typeof(User)) as User;
         }
 
         public async Task<List<User>> getAllUsers()
         {
-            var responseString = await client.GetStringAsync("https://localhost:44330/all?data="+RSAClass.Encrypt("all"));
+            //var responseString = await client.GetStringAsync("https://localhost:44330/all?data="+RSAClass.Encrypt("all"));
+            var responseString = await client.GetStringAsync("https://localhost:44330/api/employees?token="+token);
             JsonTextReader rs = new JsonTextReader(new StringReader(responseString));
             return new JsonSerializer().Deserialize(rs, typeof(List<User>)) as List<User>;
         }
